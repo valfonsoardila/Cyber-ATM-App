@@ -14,7 +14,7 @@ class _IntroSimpleState extends State<IntroSimple> {
     super.initState();
     Future.delayed(Duration(seconds: 5), () {
       Navigator.pushReplacementNamed(context,
-          '/principal'); // Navegar a la vista de inicio de sesión después de 5 segundos
+          '/login'); // Navegar a la vista de inicio de sesión después de 5 segundos
       // Aquí puedes agregar tu código para navegar a la pantalla principal de tu aplicación
     });
   }
@@ -30,7 +30,7 @@ class _IntroSimpleState extends State<IntroSimple> {
           children: [
             BounceInDown(
               child: Image.asset(
-                'assets/icon/icon.png', // Asegúrate de que la imagen se encuentre en la carpeta "assets" de tu proyecto
+                'assets/icons/icon.png', // Asegúrate de que la imagen se encuentre en la carpeta "assets" de tu proyecto
                 width: 200,
                 height: 200,
               ),
@@ -41,10 +41,17 @@ class _IntroSimpleState extends State<IntroSimple> {
               child: AnimatedTextKit(
                 animatedTexts: [
                   TyperAnimatedText(
-                    'EcoFinanza app', // Puedes personalizar el nombre de tu aplicación aquí
+                    'Cyber ATM', // Puedes personalizar el nombre de tu aplicación aquí
                     textStyle: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  TyperAnimatedText(
+                    '¡Tu cajero automatico virtual!', // Puedes personalizar el nombre de tu aplicación aquí
+                    textStyle: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.normal,
                     ),
                   ),
                 ],

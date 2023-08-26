@@ -1,4 +1,5 @@
 import 'package:cyber_atm_app/ui/anim/introSimple_app.dart';
+import 'package:cyber_atm_app/ui/auth/login.dart';
 import 'package:cyber_atm_app/ui/home/main_view.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,7 @@ class App extends StatelessWidget {
       initialRoute: '/',
       routes: {
         "/": (context) => IntroSimple(),
+        "/login": (context) => Login(),
         "/principal": (context) => MainView(),
       },
     );
