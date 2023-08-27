@@ -33,7 +33,7 @@ class _MainViewState extends State<Login> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset(
-                  "assets/icons/icon_design.png",
+                  "assets/icons/ic_design.png",
                   width: 150,
                   height: 150,
                   alignment: Alignment.center,
@@ -45,6 +45,17 @@ class _MainViewState extends State<Login> {
                   "Cyber ATM",
                   style: TextStyle(
                     fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Iniciar sesion",
+                  style: TextStyle(
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
@@ -84,7 +95,7 @@ class _MainViewState extends State<Login> {
                     ),
                     labelText: 'Contraseña',
                     labelStyle: TextStyle(color: Colors.black),
-                    prefixIcon: Icon(Icons.phone, color: Colors.black),
+                    prefixIcon: Icon(Icons.lock, color: Colors.black),
                   ),
                 ),
                 SizedBox(

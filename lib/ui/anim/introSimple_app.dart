@@ -30,7 +30,7 @@ class _IntroSimpleState extends State<IntroSimple> {
           children: [
             BounceInDown(
               child: Image.asset(
-                'assets/icons/icon.png', // Asegúrate de que la imagen se encuentre en la carpeta "assets" de tu proyecto
+                'assets/icons/ic.png', // Asegúrate de que la imagen se encuentre en la carpeta "assets" de tu proyecto
                 width: 200,
                 height: 200,
               ),

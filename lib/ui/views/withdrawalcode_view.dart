@@ -1,53 +1,13 @@
-import 'dart:math';
-import 'package:cyber_atm_app/ui/auth/login.dart';
-import 'package:cyber_atm_app/ui/home/monto.dart';
-import 'package:cyber_atm_app/ui/views/amount_view.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:background_sms/background_sms.dart';
 
-class MainView extends StatefulWidget {
-  const MainView({super.key});
+class WithdrawalCodeView extends StatefulWidget {
+  const WithdrawalCodeView({super.key});
 
   @override
-  State<MainView> createState() => _CuentaState();
+  State<WithdrawalCodeView> createState() => _WithdrawalCodeViewState();
 }
 
-class _CuentaState extends State<MainView> {
-  String numCuenta = "";
-  Permission p = Permission.sms;
-  push(int num) {
-    int tam = numCuenta.length;
-    setState(() {
-      if (tam < 10) {
-        numCuenta = numCuenta + num.toString();
-      }
-    });
-  }
-
-  borrar() {
-    int tam = numCuenta.length;
-    setState(() {
-      if (tam > 0) {
-        numCuenta = numCuenta.substring(0, tam - 1);
-      }
-    });
-  }
-
-  String codigo() {
-    String codexx = "";
-    for (int i = 0; i < 3; i++) {
-      int random = Random().nextInt(100);
-      if (random >= 0 && random < 10) {
-        codexx = "${codexx}0${random.toString()}";
-      } else {
-        codexx = codexx + random.toString();
-      }
-    }
-    return codexx;
-  }
-
+class _WithdrawalCodeViewState extends State<WithdrawalCodeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -113,7 +73,7 @@ class _CuentaState extends State<MainView> {
                             margin: EdgeInsets.only(bottom: 20),
                             alignment: Alignment.center,
                             child: Text(
-                              numCuenta,
+                              "",
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
@@ -177,9 +137,7 @@ class _CuentaState extends State<MainView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {
-                                push(1);
-                              },
+                              onPressed: () {},
                               child: Text(
                                 "1",
                                 style: TextStyle(
@@ -201,9 +159,7 @@ class _CuentaState extends State<MainView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {
-                                push(2);
-                              },
+                              onPressed: () {},
                               child: Text(
                                 "2",
                                 style: TextStyle(
@@ -225,9 +181,7 @@ class _CuentaState extends State<MainView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {
-                                push(3);
-                              },
+                              onPressed: () {},
                               child: Text(
                                 "3",
                                 style: TextStyle(
@@ -249,13 +203,7 @@ class _CuentaState extends State<MainView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {
-                                Navigator.pushAndRemoveUntil(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const Login()),
-                                    (route) => false);
-                              },
+                              onPressed: () {},
                               child: Row(
                                 children: [
                                   RotatedBox(
@@ -307,9 +255,7 @@ class _CuentaState extends State<MainView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {
-                                push(4);
-                              },
+                              onPressed: () {},
                               child: Text(
                                 "4",
                                 style: TextStyle(
@@ -331,9 +277,7 @@ class _CuentaState extends State<MainView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {
-                                push(5);
-                              },
+                              onPressed: () {},
                               child: Text(
                                 "5",
                                 style: TextStyle(
@@ -355,9 +299,7 @@ class _CuentaState extends State<MainView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {
-                                push(6);
-                              },
+                              onPressed: () {},
                               child: Text(
                                 "6",
                                 style: TextStyle(
@@ -379,9 +321,7 @@ class _CuentaState extends State<MainView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {
-                                borrar();
-                              },
+                              onPressed: () {},
                               child: Row(
                                 children: [
                                   RotatedBox(
@@ -433,9 +373,7 @@ class _CuentaState extends State<MainView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {
-                                push(7);
-                              },
+                              onPressed: () {},
                               child: Text(
                                 "7",
                                 style: TextStyle(
@@ -458,9 +396,7 @@ class _CuentaState extends State<MainView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {
-                                push(8);
-                              },
+                              onPressed: () {},
                               child: Text(
                                 "8",
                                 style: TextStyle(
@@ -482,9 +418,7 @@ class _CuentaState extends State<MainView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {
-                                push(9);
-                              },
+                              onPressed: () {},
                               child: Text(
                                 "9",
                                 style: TextStyle(
@@ -506,13 +440,7 @@ class _CuentaState extends State<MainView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {
-                                Navigator.pushAndRemoveUntil(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const MainView()),
-                                    (route) => false);
-                              },
+                              onPressed: () {},
                               child: Row(
                                 children: [
                                   RotatedBox(
@@ -586,9 +514,7 @@ class _CuentaState extends State<MainView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {
-                                push(0);
-                              },
+                              onPressed: () {},
                               child: Text(
                                 "0",
                                 style: TextStyle(
@@ -632,24 +558,7 @@ class _CuentaState extends State<MainView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {
-                                String cod = codigo();
-                                enviarcodigo(numCuenta,
-                                    "Su codigo de retiro temporal es: $cod");
-                                if (numCuenta.length == 10) {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => AmountView(
-                                                tipo: "nequi",
-                                                codigo: cod,
-                                              )));
-                                } else {
-                                  showCupertinoDialog(
-                                      context: context,
-                                      builder: (_) => _buildAlertDialog());
-                                }
-                              },
+                              onPressed: () {},
                               child: Row(
                                 children: [
                                   RotatedBox(
@@ -700,32 +609,5 @@ class _CuentaState extends State<MainView> {
         ),
       ),
     );
-  }
-
-  Widget _buildAlertDialog() {
-    return CupertinoAlertDialog(
-      title: const Text('Alerta'),
-      content: const Text("Numero de cuenta invalido"),
-      actions: <Widget>[
-        TextButton(
-            child: const Text(
-              "Aceptar",
-              style: TextStyle(color: Colors.green),
-            ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            }),
-      ],
-    );
-  }
-
-  Future<void> enviarcodigo(telefono, codigo) async {
-    SmsStatus result =
-        await BackgroundSms.sendMessage(phoneNumber: telefono, message: codigo);
-    if (result == SmsStatus.sent) {
-      print("Sent");
-    } else {
-      print("Failed");
-    }
   }
 }
