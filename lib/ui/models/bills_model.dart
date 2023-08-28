@@ -1,12 +1,11 @@
-// ignore_for_file: avoid_print
-
-class Cajero {
-  List<int> denominaciones = [10, 20, 50, 100];
+class BillsModel {
+  List<int> denominaciones = [10000, 20000, 50000, 100000];
   List<int> cantidades = [0, 0, 0, 0];
 
-  Cajero();
+  BillsModel();
 
   List<int> retirar(monto) {
+    print("Llego al modelo el monto: $monto");
     for (int i = 0; i < 4; i++) {
       for (int j = i; j < 4; j++) {
         if (monto >= denominaciones[j]) {
@@ -24,7 +23,6 @@ class Cajero {
         }
       }
     }
-    print(cantidades);
     return cantidades;
   }
 }

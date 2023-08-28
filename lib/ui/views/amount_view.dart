@@ -1,10 +1,15 @@
+import 'dart:math';
+
+import 'package:background_sms/background_sms.dart';
+import 'package:cyber_atm_app/ui/auth/login.dart';
+import 'package:cyber_atm_app/ui/views/withdrawalcode_view.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class AmountView extends StatefulWidget {
   final String tipo;
-  final String codigo;
-  AmountView({super.key, required this.tipo, required this.codigo});
+  final String cuenta;
+  AmountView({super.key, required this.tipo, required this.cuenta});
 
   @override
   State<AmountView> createState() => _AmountViewState();
@@ -14,6 +19,7 @@ class _AmountViewState extends State<AmountView> {
   String otraCantidadARetirar = "";
   bool isKeyboardVisible = false;
   bool isOtherValue = false;
+  String codigo = "";
   final numberFormat = NumberFormat.currency(locale: 'es_MX', symbol: "\$ ");
   push(int num) {
     int tam = otraCantidadARetirar.length;
@@ -31,6 +37,33 @@ class _AmountViewState extends State<AmountView> {
         otraCantidadARetirar = otraCantidadARetirar.substring(0, tam - 1);
       }
     });
+  }
+
+  Future<void> enviarcodigo(telefono, codigo) async {
+    print("Enviando codigo");
+    print(telefono);
+    print(codigo);
+    SmsStatus result = await BackgroundSms.sendMessage(
+        phoneNumber: telefono,
+        message: "Este su codigo para retirar efectivo: $codigo");
+    if (result == SmsStatus.sent) {
+      print("Sent");
+    } else {
+      print("Failed");
+    }
+  }
+
+  String generarCodigo() {
+    String code = "";
+    for (int i = 0; i < 3; i++) {
+      int random = Random().nextInt(100);
+      if (random >= 0 && random < 10) {
+        code = "${code}0${random.toString()}";
+      } else {
+        code = code + random.toString();
+      }
+    }
+    return code;
   }
 
   @override
@@ -121,7 +154,7 @@ class _AmountViewState extends State<AmountView> {
                                       margin: EdgeInsets.only(bottom: 20),
                                       alignment: Alignment.center,
                                       child: Text(
-                                        "",
+                                        otraCantidadARetirar,
                                         style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
@@ -139,7 +172,19 @@ class _AmountViewState extends State<AmountView> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             GestureDetector(
-                                              onTap: () {},
+                                              onTap: () {
+                                                codigo = generarCodigo();
+                                                enviarcodigo(
+                                                    widget.cuenta, codigo);
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            WithdrawalCodeView(
+                                                              monto: 20000,
+                                                              codigo: codigo,
+                                                            )));
+                                              },
                                               child: SizedBox(
                                                 child: Row(
                                                   mainAxisSize:
@@ -170,7 +215,19 @@ class _AmountViewState extends State<AmountView> {
                                               ),
                                             ),
                                             GestureDetector(
-                                              onTap: () {},
+                                              onTap: () {
+                                                codigo = generarCodigo();
+                                                enviarcodigo(
+                                                    widget.cuenta, codigo);
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            WithdrawalCodeView(
+                                                                monto: 50000,
+                                                                codigo:
+                                                                    codigo)));
+                                              },
                                               child: SizedBox(
                                                 child: Row(
                                                   mainAxisSize:
@@ -208,7 +265,19 @@ class _AmountViewState extends State<AmountView> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             GestureDetector(
-                                              onTap: () {},
+                                              onTap: () {
+                                                codigo = generarCodigo();
+                                                enviarcodigo(
+                                                    widget.cuenta, codigo);
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            WithdrawalCodeView(
+                                                                monto: 100000,
+                                                                codigo:
+                                                                    codigo)));
+                                              },
                                               child: SizedBox(
                                                 child: Row(
                                                   mainAxisSize:
@@ -239,7 +308,19 @@ class _AmountViewState extends State<AmountView> {
                                               ),
                                             ),
                                             GestureDetector(
-                                              onTap: () {},
+                                              onTap: () {
+                                                codigo = generarCodigo();
+                                                enviarcodigo(
+                                                    widget.cuenta, codigo);
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            WithdrawalCodeView(
+                                                                monto: 200000,
+                                                                codigo:
+                                                                    codigo)));
+                                              },
                                               child: SizedBox(
                                                 child: Row(
                                                   mainAxisSize:
@@ -277,7 +358,19 @@ class _AmountViewState extends State<AmountView> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             GestureDetector(
-                                              onTap: () {},
+                                              onTap: () {
+                                                codigo = generarCodigo();
+                                                enviarcodigo(
+                                                    widget.cuenta, codigo);
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            WithdrawalCodeView(
+                                                              monto: 300000,
+                                                              codigo: codigo,
+                                                            )));
+                                              },
                                               child: SizedBox(
                                                 child: Row(
                                                   mainAxisSize:
@@ -308,7 +401,19 @@ class _AmountViewState extends State<AmountView> {
                                               ),
                                             ),
                                             GestureDetector(
-                                              onTap: () {},
+                                              onTap: () {
+                                                codigo = generarCodigo();
+                                                enviarcodigo(
+                                                    widget.cuenta, codigo);
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            WithdrawalCodeView(
+                                                                monto: 500000,
+                                                                codigo:
+                                                                    codigo)));
+                                              },
                                               child: SizedBox(
                                                 child: Row(
                                                   mainAxisSize:
@@ -346,7 +451,19 @@ class _AmountViewState extends State<AmountView> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             GestureDetector(
-                                              onTap: () {},
+                                              onTap: () {
+                                                codigo = generarCodigo();
+                                                enviarcodigo(
+                                                    widget.cuenta, codigo);
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            WithdrawalCodeView(
+                                                              monto: 1000000,
+                                                              codigo: codigo,
+                                                            )));
+                                              },
                                               child: SizedBox(
                                                 child: Row(
                                                   mainAxisSize:
@@ -435,33 +552,25 @@ class _AmountViewState extends State<AmountView> {
                                             size: 30,
                                           ),
                                         ),
-                                        Keyboard(),
+                                        Keyboard(
+                                          tipo: widget.tipo,
+                                          cantidadARetirar:
+                                              otraCantidadARetirar,
+                                          onNumberPressed: (int num) {
+                                            push(num);
+                                          },
+                                          onClearPressed: (bool isClear) {
+                                            borrar();
+                                          },
+                                          onContinuePressed: (String code) {
+                                            enviarcodigo(widget.cuenta, code);
+                                            codigo = code;
+                                          },
+                                        ),
                                       ],
                                     ),
                                   )
-                                : Container(
-                                    // width: MediaQuery.of(context).size.width,
-                                    // height: 50,
-                                    // child: Row(
-                                    //   mainAxisAlignment:
-                                    //       MainAxisAlignment.center,
-                                    //   children: [
-                                    //     IconButton(
-                                    //       onPressed: () {
-                                    //         setState(() {
-                                    //           isKeyboardVisible =
-                                    //               !isKeyboardVisible;
-                                    //         });
-                                    //       },
-                                    //       icon: Icon(
-                                    //         Icons
-                                    //             .keyboard_double_arrow_up_rounded,
-                                    //         size: 30,
-                                    //       ),
-                                    //     ),
-                                    //   ],
-                                    // ),
-                                    )
+                                : Container()
                           ],
                         ),
                       ),
@@ -478,7 +587,38 @@ class _AmountViewState extends State<AmountView> {
 }
 
 class Keyboard extends StatelessWidget {
-  Keyboard({Key? key}) : super(key: key);
+  final cantidadARetirar;
+  final tipo;
+  final cuenta;
+  final Function(int) onNumberPressed;
+  final Function(bool) onClearPressed;
+  final Function(String) onContinuePressed;
+  Keyboard(
+      {Key? key,
+      required this.onNumberPressed,
+      required this.onClearPressed,
+      required this.onContinuePressed,
+      this.tipo,
+      this.cuenta,
+      this.cantidadARetirar})
+      : super(key: key);
+
+  int num = 0;
+  bool isClear = false;
+  bool isContinue = false;
+
+  String generarCodigo() {
+    String code = "";
+    for (int i = 0; i < 3; i++) {
+      int random = Random().nextInt(100);
+      if (random >= 0 && random < 10) {
+        code = "${code}0${random.toString()}";
+      } else {
+        code = code + random.toString();
+      }
+    }
+    return code;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -536,22 +676,22 @@ class Keyboard extends StatelessWidget {
                         margin: EdgeInsets.only(top: 10),
                         child: ElevatedButton(
                           onPressed: () {
-                            //Funcion
+                            num = 1;
+                            onNumberPressed(num);
                           },
                           child: Text(
                             "1",
                             style: TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                              color: Colors.white,
                             ),
                           ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll<Color>(
+                                  Colors.transparent),
+                              side: MaterialStatePropertyAll<BorderSide>(
+                                  BorderSide(width: 2, color: Colors.black54))),
                         ),
                       ),
                       Container(
@@ -560,22 +700,22 @@ class Keyboard extends StatelessWidget {
                         margin: EdgeInsets.only(top: 10),
                         child: ElevatedButton(
                           onPressed: () {
-                            //Funcion
+                            num = 2;
+                            onNumberPressed(num);
                           },
                           child: Text(
                             "2",
                             style: TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                              color: Colors.white,
                             ),
                           ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll<Color>(
+                                  Colors.transparent),
+                              side: MaterialStatePropertyAll<BorderSide>(
+                                  BorderSide(width: 2, color: Colors.black54))),
                         ),
                       ),
                       Container(
@@ -584,22 +724,22 @@ class Keyboard extends StatelessWidget {
                         margin: EdgeInsets.only(top: 10),
                         child: ElevatedButton(
                           onPressed: () {
-                            //Funcion
+                            num = 3;
+                            onNumberPressed(num);
                           },
                           child: Text(
                             "3",
                             style: TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                              color: Colors.white,
                             ),
                           ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll<Color>(
+                                  Colors.transparent),
+                              side: MaterialStatePropertyAll<BorderSide>(
+                                  BorderSide(width: 2, color: Colors.black54))),
                         ),
                       ),
                       Container(
@@ -608,7 +748,11 @@ class Keyboard extends StatelessWidget {
                         margin: EdgeInsets.only(top: 10),
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.pop(context);
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Login()),
+                                (route) => false);
                           },
                           child: Row(
                             children: [
@@ -636,17 +780,16 @@ class Keyboard extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                 ),
                               ),
                             ],
                           ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll<Color>(
+                                  Colors.transparent),
+                              side: MaterialStatePropertyAll<BorderSide>(
+                                  BorderSide(width: 2, color: Colors.black54))),
                         ),
                       )
                     ],
@@ -660,22 +803,22 @@ class Keyboard extends StatelessWidget {
                         margin: EdgeInsets.only(top: 10),
                         child: ElevatedButton(
                           onPressed: () {
-                            //Funcion
+                            num = 1;
+                            onNumberPressed(num);
                           },
                           child: Text(
                             "4",
                             style: TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                              color: Colors.white,
                             ),
                           ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll<Color>(
+                                  Colors.transparent),
+                              side: MaterialStatePropertyAll<BorderSide>(
+                                  BorderSide(width: 2, color: Colors.black54))),
                         ),
                       ),
                       Container(
@@ -684,22 +827,22 @@ class Keyboard extends StatelessWidget {
                         margin: EdgeInsets.only(top: 10),
                         child: ElevatedButton(
                           onPressed: () {
-                            //Funcion
+                            num = 5;
+                            onNumberPressed(num);
                           },
                           child: Text(
                             "5",
                             style: TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                              color: Colors.white,
                             ),
                           ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll<Color>(
+                                  Colors.transparent),
+                              side: MaterialStatePropertyAll<BorderSide>(
+                                  BorderSide(width: 2, color: Colors.black54))),
                         ),
                       ),
                       Container(
@@ -708,22 +851,22 @@ class Keyboard extends StatelessWidget {
                         margin: EdgeInsets.only(top: 10),
                         child: ElevatedButton(
                           onPressed: () {
-                            //Funcion
+                            num = 6;
+                            onNumberPressed(num);
                           },
                           child: Text(
                             "6",
                             style: TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                              color: Colors.white,
                             ),
                           ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll<Color>(
+                                  Colors.transparent),
+                              side: MaterialStatePropertyAll<BorderSide>(
+                                  BorderSide(width: 2, color: Colors.black54))),
                         ),
                       ),
                       Container(
@@ -732,7 +875,8 @@ class Keyboard extends StatelessWidget {
                         margin: EdgeInsets.only(top: 10),
                         child: ElevatedButton(
                           onPressed: () {
-                            //Funcion
+                            isClear = true;
+                            onClearPressed(isClear);
                           },
                           child: Row(
                             children: [
@@ -760,17 +904,16 @@ class Keyboard extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                 ),
                               ),
                             ],
                           ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll<Color>(
+                                  Colors.transparent),
+                              side: MaterialStatePropertyAll<BorderSide>(
+                                  BorderSide(width: 2, color: Colors.black54))),
                         ),
                       )
                     ],
@@ -784,23 +927,22 @@ class Keyboard extends StatelessWidget {
                         margin: EdgeInsets.only(top: 10),
                         child: ElevatedButton(
                           onPressed: () {
-                            //Funcion
+                            num = 7;
+                            onNumberPressed(num);
                           },
                           child: Text(
                             "7",
                             style: TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                              color: Colors.white,
                             ),
                           ),
-                          style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.black,
-                            backgroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll<Color>(
+                                  Colors.transparent),
+                              side: MaterialStatePropertyAll<BorderSide>(
+                                  BorderSide(width: 2, color: Colors.black54))),
                         ),
                       ),
                       Container(
@@ -808,95 +950,102 @@ class Keyboard extends StatelessWidget {
                         height: 70,
                         margin: EdgeInsets.only(top: 10),
                         child: ElevatedButton(
-                          onPressed: () {
-                            //Funcion
-                          },
-                          child: Text(
-                            "8",
-                            style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                            onPressed: () {
+                              num = 8;
+                              onNumberPressed(num);
+                            },
+                            child: Text(
+                              "8",
+                              style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
                             ),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.black,
-                              backgroundColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              )),
-                        ),
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStatePropertyAll<Color>(
+                                        Colors.transparent),
+                                side: MaterialStatePropertyAll<BorderSide>(
+                                    BorderSide(
+                                        width: 2, color: Colors.black54)))),
                       ),
                       Container(
                         width: 70,
                         height: 70,
                         margin: EdgeInsets.only(top: 10),
                         child: ElevatedButton(
-                          onPressed: () {
-                            //Funcion
-                          },
-                          child: Text(
-                            "9",
-                            style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                            onPressed: () {
+                              num = 9;
+                              onNumberPressed(num);
+                            },
+                            child: Text(
+                              "9",
+                              style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
                             ),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.black,
-                              backgroundColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              )),
-                        ),
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStatePropertyAll<Color>(
+                                        Colors.transparent),
+                                side: MaterialStatePropertyAll<BorderSide>(
+                                    BorderSide(
+                                        width: 2, color: Colors.black54)))),
                       ),
                       Container(
                         width: 155,
                         height: 70,
                         margin: EdgeInsets.only(top: 10),
                         child: ElevatedButton(
-                          onPressed: () {
-                            //Funcion
-                          },
-                          child: Row(
-                            children: [
-                              RotatedBox(
-                                quarterTurns: 1,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      border: Border.all(
-                                          width: 1.5, color: Colors.black45),
-                                      borderRadius: BorderRadius.circular(5)),
-                                  child: Icon(Icons.horizontal_rule_rounded,
-                                      size: 34,
-                                      color: Colors.white,
-                                      shadows: <Shadow>[
-                                        Shadow(
-                                            color: Colors.black54,
-                                            blurRadius: 10.0)
-                                      ]),
+                            onPressed: () {
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => AmountView(
+                                          tipo: tipo, cuenta: cuenta)),
+                                  (route) => false);
+                            },
+                            child: Row(
+                              children: [
+                                RotatedBox(
+                                  quarterTurns: 1,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border.all(
+                                            width: 1.5, color: Colors.black45),
+                                        borderRadius: BorderRadius.circular(5)),
+                                    child: Icon(Icons.horizontal_rule_rounded,
+                                        size: 34,
+                                        color: Colors.white,
+                                        shadows: <Shadow>[
+                                          Shadow(
+                                              color: Colors.black54,
+                                              blurRadius: 10.0)
+                                        ]),
+                                  ),
                                 ),
-                              ),
-                              SizedBox(width: 5),
-                              Text(
-                                "Corregir",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                SizedBox(width: 5),
+                                Text(
+                                  "Corregir",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.black,
-                              backgroundColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              )),
-                        ),
+                              ],
+                            ),
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStatePropertyAll<Color>(
+                                        Colors.transparent),
+                                side: MaterialStatePropertyAll<BorderSide>(
+                                    BorderSide(
+                                        width: 2, color: Colors.black54)))),
                       )
                     ],
                   ),
@@ -918,35 +1067,12 @@ class Keyboard extends StatelessWidget {
                             ),
                           ),
                           style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.black,
-                              backgroundColor: Colors.transparent,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              )),
-                        ),
-                      ),
-                      Container(
-                        width: 70,
-                        height: 70,
-                        margin: EdgeInsets.only(top: 10),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            //Funcion
-                          },
-                          child: Text(
-                            "0",
-                            style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                            foregroundColor: Colors.black,
+                            backgroundColor: Colors.transparent,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
                             ),
                           ),
-                          style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.black,
-                              backgroundColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              )),
                         ),
                       ),
                       Container(
@@ -954,12 +1080,38 @@ class Keyboard extends StatelessWidget {
                         height: 70,
                         margin: EdgeInsets.only(top: 10),
                         child: ElevatedButton(
+                            onPressed: () {
+                              num = 0;
+                              onNumberPressed(num);
+                            },
+                            child: Text(
+                              "0",
+                              style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStatePropertyAll<Color>(
+                                        Colors.transparent),
+                                side: MaterialStatePropertyAll<BorderSide>(
+                                    BorderSide(
+                                        width: 2, color: Colors.black54)))),
+                      ),
+                      Container(
+                        width: 70,
+                        height: 70,
+                        margin: EdgeInsets.only(top: 10),
+                        child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.black,
-                              backgroundColor: Colors.transparent,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              )),
+                            foregroundColor: Colors.black,
+                            backgroundColor: Colors.transparent,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
                           onPressed: () {},
                           child: Text(
                             "",
@@ -976,47 +1128,57 @@ class Keyboard extends StatelessWidget {
                         height: 70,
                         margin: EdgeInsets.only(top: 10),
                         child: ElevatedButton(
-                          onPressed: () {
-                            //Funcion
-                          },
-                          child: Row(
-                            children: [
-                              RotatedBox(
-                                quarterTurns: 130,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.lightGreen[600],
-                                      border: Border.all(
-                                          width: 1.5, color: Colors.black45),
-                                      borderRadius: BorderRadius.circular(5)),
-                                  child: Icon(Icons.circle_outlined,
-                                      size: 34,
-                                      color: Colors.lightGreen[600],
-                                      shadows: <Shadow>[
-                                        Shadow(
-                                            color: Colors.black54,
-                                            blurRadius: 10.0)
-                                      ]),
+                            onPressed: () {
+                              isContinue = true;
+                              var code = generarCodigo();
+                              onContinuePressed(code);
+                              int cantidadDinero = int.parse(cantidadARetirar);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => WithdrawalCodeView(
+                                            monto: cantidadDinero,
+                                            codigo: code,
+                                          )));
+                            },
+                            child: Row(
+                              children: [
+                                RotatedBox(
+                                  quarterTurns: 130,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.lightGreen[600],
+                                        border: Border.all(
+                                            width: 1.5, color: Colors.black45),
+                                        borderRadius: BorderRadius.circular(5)),
+                                    child: Icon(Icons.circle_outlined,
+                                        size: 34,
+                                        color: Colors.lightGreen[600],
+                                        shadows: <Shadow>[
+                                          Shadow(
+                                              color: Colors.black54,
+                                              blurRadius: 10.0)
+                                        ]),
+                                  ),
                                 ),
-                              ),
-                              SizedBox(width: 5),
-                              Text(
-                                "Continuar",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                SizedBox(width: 5),
+                                Text(
+                                  "Continuar",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.black,
-                              backgroundColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              )),
-                        ),
+                              ],
+                            ),
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStatePropertyAll<Color>(
+                                        Colors.transparent),
+                                side: MaterialStatePropertyAll<BorderSide>(
+                                    BorderSide(
+                                        width: 2, color: Colors.black54)))),
                       ),
                     ],
                   ),

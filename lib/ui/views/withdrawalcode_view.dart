@@ -1,13 +1,42 @@
+import 'package:cyber_atm_app/ui/auth/login.dart';
+import 'package:cyber_atm_app/ui/views/account_view.dart';
+import 'package:cyber_atm_app/ui/models/bills_model.dart';
+import 'package:cyber_atm_app/ui/views/moneywithdrawal_view.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class WithdrawalCodeView extends StatefulWidget {
-  const WithdrawalCodeView({super.key});
+  final monto;
+  final codigo;
+  WithdrawalCodeView({super.key, this.monto, this.codigo});
 
   @override
   State<WithdrawalCodeView> createState() => _WithdrawalCodeViewState();
 }
 
 class _WithdrawalCodeViewState extends State<WithdrawalCodeView> {
+  String codigoDeRetiro = "";
+  late BillsModel billsModel;
+  late List<int> cantidadBilletes;
+  push(int num) {
+    int tam = codigoDeRetiro.length;
+    setState(() {
+      if (tam < 10) {
+        codigoDeRetiro = codigoDeRetiro + num.toString();
+      }
+    });
+  }
+
+  borrar() {
+    int tam = codigoDeRetiro.length;
+    setState(() {
+      if (tam > 0) {
+        codigoDeRetiro = codigoDeRetiro.substring(0, tam - 1);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +64,7 @@ class _WithdrawalCodeViewState extends State<WithdrawalCodeView> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Image.asset(
-                          "assets/icons/ic.png",
+                          "assets/icons/ic_sms_code.png",
                           width: 200,
                           height: 100,
                         ),
@@ -43,7 +72,7 @@ class _WithdrawalCodeViewState extends State<WithdrawalCodeView> {
                         Container(
                           margin: EdgeInsets.only(bottom: 20),
                           child: Text(
-                            "Ingrese su numero de cuenta",
+                            "Por favor ingrese el código de retiro",
                             style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
@@ -73,7 +102,7 @@ class _WithdrawalCodeViewState extends State<WithdrawalCodeView> {
                             margin: EdgeInsets.only(bottom: 20),
                             alignment: Alignment.center,
                             child: Text(
-                              "",
+                              codigoDeRetiro,
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
@@ -137,21 +166,24 @@ class _WithdrawalCodeViewState extends State<WithdrawalCodeView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                push(1);
+                              },
                               child: Text(
                                 "1",
                                 style: TextStyle(
                                   fontSize: 30,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                 ),
                               ),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStatePropertyAll<Color>(
+                                          Colors.transparent),
+                                  side: MaterialStatePropertyAll<BorderSide>(
+                                      BorderSide(
+                                          width: 2, color: Colors.black54))),
                             ),
                           ),
                           Container(
@@ -159,21 +191,24 @@ class _WithdrawalCodeViewState extends State<WithdrawalCodeView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                push(2);
+                              },
                               child: Text(
                                 "2",
                                 style: TextStyle(
                                   fontSize: 30,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                 ),
                               ),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStatePropertyAll<Color>(
+                                          Colors.transparent),
+                                  side: MaterialStatePropertyAll<BorderSide>(
+                                      BorderSide(
+                                          width: 2, color: Colors.black54))),
                             ),
                           ),
                           Container(
@@ -181,21 +216,24 @@ class _WithdrawalCodeViewState extends State<WithdrawalCodeView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                push(3);
+                              },
                               child: Text(
                                 "3",
                                 style: TextStyle(
                                   fontSize: 30,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                 ),
                               ),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStatePropertyAll<Color>(
+                                          Colors.transparent),
+                                  side: MaterialStatePropertyAll<BorderSide>(
+                                      BorderSide(
+                                          width: 2, color: Colors.black54))),
                             ),
                           ),
                           Container(
@@ -203,7 +241,13 @@ class _WithdrawalCodeViewState extends State<WithdrawalCodeView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const Login()),
+                                    (route) => false);
+                              },
                               child: Row(
                                 children: [
                                   RotatedBox(
@@ -232,17 +276,18 @@ class _WithdrawalCodeViewState extends State<WithdrawalCodeView> {
                                     style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.black,
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ],
                               ),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStatePropertyAll<Color>(
+                                          Colors.transparent),
+                                  side: MaterialStatePropertyAll<BorderSide>(
+                                      BorderSide(
+                                          width: 2, color: Colors.black54))),
                             ),
                           )
                         ],
@@ -255,21 +300,24 @@ class _WithdrawalCodeViewState extends State<WithdrawalCodeView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                push(4);
+                              },
                               child: Text(
                                 "4",
                                 style: TextStyle(
                                   fontSize: 30,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                 ),
                               ),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStatePropertyAll<Color>(
+                                          Colors.transparent),
+                                  side: MaterialStatePropertyAll<BorderSide>(
+                                      BorderSide(
+                                          width: 2, color: Colors.black54))),
                             ),
                           ),
                           Container(
@@ -277,21 +325,24 @@ class _WithdrawalCodeViewState extends State<WithdrawalCodeView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                push(5);
+                              },
                               child: Text(
                                 "5",
                                 style: TextStyle(
                                   fontSize: 30,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                 ),
                               ),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStatePropertyAll<Color>(
+                                          Colors.transparent),
+                                  side: MaterialStatePropertyAll<BorderSide>(
+                                      BorderSide(
+                                          width: 2, color: Colors.black54))),
                             ),
                           ),
                           Container(
@@ -299,21 +350,24 @@ class _WithdrawalCodeViewState extends State<WithdrawalCodeView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                push(6);
+                              },
                               child: Text(
                                 "6",
                                 style: TextStyle(
                                   fontSize: 30,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                 ),
                               ),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStatePropertyAll<Color>(
+                                          Colors.transparent),
+                                  side: MaterialStatePropertyAll<BorderSide>(
+                                      BorderSide(
+                                          width: 2, color: Colors.black54))),
                             ),
                           ),
                           Container(
@@ -321,7 +375,9 @@ class _WithdrawalCodeViewState extends State<WithdrawalCodeView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                borrar();
+                              },
                               child: Row(
                                 children: [
                                   RotatedBox(
@@ -350,17 +406,18 @@ class _WithdrawalCodeViewState extends State<WithdrawalCodeView> {
                                     style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.black,
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ],
                               ),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStatePropertyAll<Color>(
+                                          Colors.transparent),
+                                  side: MaterialStatePropertyAll<BorderSide>(
+                                      BorderSide(
+                                          width: 2, color: Colors.black54))),
                             ),
                           )
                         ],
@@ -373,22 +430,24 @@ class _WithdrawalCodeViewState extends State<WithdrawalCodeView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                push(7);
+                              },
                               child: Text(
                                 "7",
                                 style: TextStyle(
                                   fontSize: 30,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                 ),
                               ),
-                              style: ElevatedButton.styleFrom(
-                                foregroundColor: Colors.black,
-                                backgroundColor: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStatePropertyAll<Color>(
+                                          Colors.transparent),
+                                  side: MaterialStatePropertyAll<BorderSide>(
+                                      BorderSide(
+                                          width: 2, color: Colors.black54))),
                             ),
                           ),
                           Container(
@@ -396,91 +455,105 @@ class _WithdrawalCodeViewState extends State<WithdrawalCodeView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {},
-                              child: Text(
-                                "8",
-                                style: TextStyle(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                onPressed: () {
+                                  push(8);
+                                },
+                                child: Text(
+                                  "8",
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),
-                              style: ElevatedButton.styleFrom(
-                                  foregroundColor: Colors.black,
-                                  backgroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  )),
-                            ),
+                                style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStatePropertyAll<Color>(
+                                            Colors.transparent),
+                                    side: MaterialStatePropertyAll<BorderSide>(
+                                        BorderSide(
+                                            width: 2, color: Colors.black54)))),
                           ),
                           Container(
                             width: 70,
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {},
-                              child: Text(
-                                "9",
-                                style: TextStyle(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                onPressed: () {
+                                  push(9);
+                                },
+                                child: Text(
+                                  "9",
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),
-                              style: ElevatedButton.styleFrom(
-                                  foregroundColor: Colors.black,
-                                  backgroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  )),
-                            ),
+                                style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStatePropertyAll<Color>(
+                                            Colors.transparent),
+                                    side: MaterialStatePropertyAll<BorderSide>(
+                                        BorderSide(
+                                            width: 2, color: Colors.black54)))),
                           ),
                           Container(
                             width: 155,
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {},
-                              child: Row(
-                                children: [
-                                  RotatedBox(
-                                    quarterTurns: 1,
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          border: Border.all(
-                                              width: 1.5,
-                                              color: Colors.black45),
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: Icon(Icons.horizontal_rule_rounded,
-                                          size: 34,
-                                          color: Colors.white,
-                                          shadows: const <Shadow>[
-                                            Shadow(
-                                                color: Colors.black54,
-                                                blurRadius: 10.0)
-                                          ]),
+                                onPressed: () {
+                                  Navigator.pushAndRemoveUntil(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              WithdrawalCodeView(
+                                                  monto: widget.monto,
+                                                  codigo: codigoDeRetiro)),
+                                      (route) => false);
+                                },
+                                child: Row(
+                                  children: [
+                                    RotatedBox(
+                                      quarterTurns: 1,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            border: Border.all(
+                                                width: 1.5,
+                                                color: Colors.black45),
+                                            borderRadius:
+                                                BorderRadius.circular(5)),
+                                        child: Icon(
+                                            Icons.horizontal_rule_rounded,
+                                            size: 34,
+                                            color: Colors.white,
+                                            shadows: const <Shadow>[
+                                              Shadow(
+                                                  color: Colors.black54,
+                                                  blurRadius: 10.0)
+                                            ]),
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(width: 5),
-                                  Text(
-                                    "Corregir",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
+                                    SizedBox(width: 5),
+                                    Text(
+                                      "Corregir",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                              style: ElevatedButton.styleFrom(
-                                  foregroundColor: Colors.black,
-                                  backgroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  )),
-                            ),
+                                  ],
+                                ),
+                                style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStatePropertyAll<Color>(
+                                            Colors.transparent),
+                                    side: MaterialStatePropertyAll<BorderSide>(
+                                        BorderSide(
+                                            width: 2, color: Colors.black54)))),
                           )
                         ],
                       ),
@@ -502,33 +575,12 @@ class _WithdrawalCodeViewState extends State<WithdrawalCodeView> {
                                 ),
                               ),
                               style: ElevatedButton.styleFrom(
-                                  foregroundColor: Colors.black,
-                                  backgroundColor: Colors.transparent,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  )),
-                            ),
-                          ),
-                          Container(
-                            width: 70,
-                            height: 70,
-                            margin: EdgeInsets.only(top: 10),
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              child: Text(
-                                "0",
-                                style: TextStyle(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                foregroundColor: Colors.black,
+                                backgroundColor: Colors.transparent,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
                                 ),
                               ),
-                              style: ElevatedButton.styleFrom(
-                                  foregroundColor: Colors.black,
-                                  backgroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  )),
                             ),
                           ),
                           Container(
@@ -536,12 +588,37 @@ class _WithdrawalCodeViewState extends State<WithdrawalCodeView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
+                                onPressed: () {
+                                  push(0);
+                                },
+                                child: Text(
+                                  "0",
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStatePropertyAll<Color>(
+                                            Colors.transparent),
+                                    side: MaterialStatePropertyAll<BorderSide>(
+                                        BorderSide(
+                                            width: 2, color: Colors.black54)))),
+                          ),
+                          Container(
+                            width: 70,
+                            height: 70,
+                            margin: EdgeInsets.only(top: 10),
+                            child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                  foregroundColor: Colors.black,
-                                  backgroundColor: Colors.transparent,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  )),
+                                foregroundColor: Colors.black,
+                                backgroundColor: Colors.transparent,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
                               onPressed: () {},
                               child: Text(
                                 "",
@@ -558,47 +635,64 @@ class _WithdrawalCodeViewState extends State<WithdrawalCodeView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {},
-                              child: Row(
-                                children: [
-                                  RotatedBox(
-                                    quarterTurns: 130,
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.lightGreen[600],
-                                          border: Border.all(
-                                              width: 1.5,
-                                              color: Colors.black45),
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: Icon(Icons.circle_outlined,
-                                          size: 34,
-                                          color: Colors.lightGreen[600],
-                                          shadows: const <Shadow>[
-                                            Shadow(
-                                                color: Colors.black54,
-                                                blurRadius: 10.0)
-                                          ]),
+                                onPressed: () {
+                                  if (codigoDeRetiro.compareTo(widget.codigo) ==
+                                      0) {
+                                    showCupertinoDialog(
+                                        context: context,
+                                        builder: (_) => _buildAlertDialog(
+                                            "Retiro exitoso",
+                                            "Su retiro de \$${NumberFormat.currency(locale: 'es_CO', symbol: '').format(widget.monto)} se ha realizado con exito",
+                                            0));
+                                  } else {
+                                    showCupertinoDialog(
+                                        context: context,
+                                        builder: (_) => _buildAlertDialog(
+                                            "Retiro cancelado",
+                                            "Codigo Invalido",
+                                            1));
+                                  }
+                                },
+                                child: Row(
+                                  children: [
+                                    RotatedBox(
+                                      quarterTurns: 130,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            color: Colors.lightGreen[600],
+                                            border: Border.all(
+                                                width: 1.5,
+                                                color: Colors.black45),
+                                            borderRadius:
+                                                BorderRadius.circular(5)),
+                                        child: Icon(Icons.circle_outlined,
+                                            size: 34,
+                                            color: Colors.lightGreen[600],
+                                            shadows: const <Shadow>[
+                                              Shadow(
+                                                  color: Colors.black54,
+                                                  blurRadius: 10.0)
+                                            ]),
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(width: 5),
-                                  Text(
-                                    "Continuar",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
+                                    SizedBox(width: 5),
+                                    Text(
+                                      "Continuar",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                              style: ElevatedButton.styleFrom(
-                                  foregroundColor: Colors.black,
-                                  backgroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  )),
-                            ),
+                                  ],
+                                ),
+                                style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStatePropertyAll<Color>(
+                                            Colors.transparent),
+                                    side: MaterialStatePropertyAll<BorderSide>(
+                                        BorderSide(
+                                            width: 2, color: Colors.black54)))),
                           ),
                         ],
                       ),
@@ -608,6 +702,35 @@ class _WithdrawalCodeViewState extends State<WithdrawalCodeView> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildAlertDialog(String title, String content, int tipo) {
+    return CupertinoAlertDialog(
+      title: Text(title),
+      content: Text("$content, por favor intente nuevamente"),
+      actions: <Widget>[
+        TextButton(
+            child: const Text(
+              "Aceptar",
+              style: TextStyle(color: Colors.green),
+            ),
+            onPressed: () {
+              if (title == "Retiro exitoso") {
+                cantidadBilletes = BillsModel().retirar(widget.monto);
+                print(cantidadBilletes);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MoneyWithDrawalView(
+                              cantidadBilletes: cantidadBilletes,
+                            )));
+              } else {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AccountView()));
+              }
+            }),
+      ],
     );
   }
 }

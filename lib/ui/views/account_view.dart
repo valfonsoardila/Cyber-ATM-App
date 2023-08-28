@@ -1,20 +1,19 @@
 import 'dart:math';
 import 'package:cyber_atm_app/ui/auth/login.dart';
-import 'package:cyber_atm_app/ui/home/monto.dart';
 import 'package:cyber_atm_app/ui/views/amount_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:background_sms/background_sms.dart';
 
-class MainView extends StatefulWidget {
-  const MainView({super.key});
+class AccountView extends StatefulWidget {
+  const AccountView({super.key});
 
   @override
-  State<MainView> createState() => _CuentaState();
+  State<AccountView> createState() => _CuentaState();
 }
 
-class _CuentaState extends State<MainView> {
+class _CuentaState extends State<AccountView> {
   String numCuenta = "";
   Permission p = Permission.sms;
   push(int num) {
@@ -177,125 +176,125 @@ class _CuentaState extends State<MainView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {
-                                push(1);
-                              },
-                              child: Text(
-                                "1",
-                                style: TextStyle(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                onPressed: () {
+                                  push(1);
+                                },
+                                child: Text(
+                                  "1",
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
-                            ),
+                                style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStatePropertyAll<Color>(
+                                            Colors.transparent),
+                                    side: MaterialStatePropertyAll<BorderSide>(
+                                        BorderSide(
+                                            width: 2, color: Colors.black54)))),
                           ),
                           Container(
                             width: 70,
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {
-                                push(2);
-                              },
-                              child: Text(
-                                "2",
-                                style: TextStyle(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                onPressed: () {
+                                  push(2);
+                                },
+                                child: Text(
+                                  "2",
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
-                            ),
+                                style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStatePropertyAll<Color>(
+                                            Colors.transparent),
+                                    side: MaterialStatePropertyAll<BorderSide>(
+                                        BorderSide(
+                                            width: 2, color: Colors.black54)))),
                           ),
                           Container(
                             width: 70,
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {
-                                push(3);
-                              },
-                              child: Text(
-                                "3",
-                                style: TextStyle(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                onPressed: () {
+                                  push(3);
+                                },
+                                child: Text(
+                                  "3",
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
-                            ),
+                                style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStatePropertyAll<Color>(
+                                            Colors.transparent),
+                                    side: MaterialStatePropertyAll<BorderSide>(
+                                        BorderSide(
+                                            width: 2, color: Colors.black54)))),
                           ),
                           Container(
                             width: 155,
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {
-                                Navigator.pushAndRemoveUntil(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const Login()),
-                                    (route) => false);
-                              },
-                              child: Row(
-                                children: [
-                                  RotatedBox(
-                                    quarterTurns: 130,
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.red[600],
-                                          border: Border.all(
-                                              width: 1.5,
-                                              color: Colors.black45),
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: Icon(Icons.close_rounded,
-                                          size: 34,
-                                          color: Colors.red[600],
-                                          shadows: const <Shadow>[
-                                            Shadow(
-                                                color: Colors.black54,
-                                                blurRadius: 10.0)
-                                          ]),
+                                onPressed: () {
+                                  Navigator.pushAndRemoveUntil(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => const Login()),
+                                      (route) => false);
+                                },
+                                child: Row(
+                                  children: [
+                                    RotatedBox(
+                                      quarterTurns: 130,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            color: Colors.red[600],
+                                            border: Border.all(
+                                                width: 1.5,
+                                                color: Colors.black45),
+                                            borderRadius:
+                                                BorderRadius.circular(5)),
+                                        child: Icon(Icons.close_rounded,
+                                            size: 34,
+                                            color: Colors.red[600],
+                                            shadows: const <Shadow>[
+                                              Shadow(
+                                                  color: Colors.black54,
+                                                  blurRadius: 10.0)
+                                            ]),
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(width: 5),
-                                  Text(
-                                    "Cancelar",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
+                                    SizedBox(width: 5),
+                                    Text(
+                                      "Cancelar",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                                  ],
                                 ),
-                              ),
-                            ),
+                                style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStatePropertyAll<Color>(
+                                            Colors.transparent),
+                                    side: MaterialStatePropertyAll<BorderSide>(
+                                        BorderSide(
+                                            width: 2, color: Colors.black54)))),
                           )
                         ],
                       ),
@@ -307,121 +306,122 @@ class _CuentaState extends State<MainView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {
-                                push(4);
-                              },
-                              child: Text(
-                                "4",
-                                style: TextStyle(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                onPressed: () {
+                                  push(4);
+                                },
+                                child: Text(
+                                  "4",
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
-                            ),
+                                style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStatePropertyAll<Color>(
+                                            Colors.transparent),
+                                    side: MaterialStatePropertyAll<BorderSide>(
+                                        BorderSide(
+                                            width: 2, color: Colors.black54)))),
                           ),
                           Container(
                             width: 70,
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {
-                                push(5);
-                              },
-                              child: Text(
-                                "5",
-                                style: TextStyle(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                onPressed: () {
+                                  push(5);
+                                },
+                                child: Text(
+                                  "5",
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
-                            ),
+                                style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStatePropertyAll<Color>(
+                                            Colors.transparent),
+                                    side: MaterialStatePropertyAll<BorderSide>(
+                                        BorderSide(
+                                            width: 2, color: Colors.black54)))),
                           ),
                           Container(
                             width: 70,
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {
-                                push(6);
-                              },
-                              child: Text(
-                                "6",
-                                style: TextStyle(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                onPressed: () {
+                                  push(6);
+                                },
+                                child: Text(
+                                  "6",
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
-                            ),
+                                style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStatePropertyAll<Color>(
+                                            Colors.transparent),
+                                    side: MaterialStatePropertyAll<BorderSide>(
+                                        BorderSide(
+                                            width: 2, color: Colors.black54)))),
                           ),
                           Container(
                             width: 155,
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {
-                                borrar();
-                              },
-                              child: Row(
-                                children: [
-                                  RotatedBox(
-                                    quarterTurns: 1,
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.amber[600],
-                                          border: Border.all(
-                                              width: 1.5,
-                                              color: Colors.black45),
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: Icon(Icons.arrow_back_ios_rounded,
-                                          size: 34,
-                                          color: Colors.amber[600],
-                                          shadows: const <Shadow>[
-                                            Shadow(
-                                                color: Colors.black54,
-                                                blurRadius: 10.0)
-                                          ]),
+                                onPressed: () {
+                                  borrar();
+                                },
+                                child: Row(
+                                  children: [
+                                    RotatedBox(
+                                      quarterTurns: 1,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            color: Colors.amber[600],
+                                            border: Border.all(
+                                                width: 1.5,
+                                                color: Colors.black45),
+                                            borderRadius:
+                                                BorderRadius.circular(5)),
+                                        child: Icon(
+                                            Icons.arrow_back_ios_rounded,
+                                            size: 34,
+                                            color: Colors.amber[600],
+                                            shadows: const <Shadow>[
+                                              Shadow(
+                                                  color: Colors.black54,
+                                                  blurRadius: 10.0)
+                                            ]),
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(width: 5),
-                                  Text(
-                                    "Borrar",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
+                                    SizedBox(width: 5),
+                                    Text(
+                                      "Borrar",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                                  ],
                                 ),
-                              ),
-                            ),
+                                style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStatePropertyAll<Color>(
+                                            Colors.transparent),
+                                    side: MaterialStatePropertyAll<BorderSide>(
+                                        BorderSide(
+                                            width: 2, color: Colors.black54)))),
                           )
                         ],
                       ),
@@ -433,25 +433,24 @@ class _CuentaState extends State<MainView> {
                             height: 70,
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
-                              onPressed: () {
-                                push(7);
-                              },
-                              child: Text(
-                                "7",
-                                style: TextStyle(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                onPressed: () {
+                                  push(7);
+                                },
+                                child: Text(
+                                  "7",
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),
-                              style: ElevatedButton.styleFrom(
-                                foregroundColor: Colors.black,
-                                backgroundColor: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
-                            ),
+                                style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStatePropertyAll<Color>(
+                                            Colors.transparent),
+                                    side: MaterialStatePropertyAll<BorderSide>(
+                                        BorderSide(
+                                            width: 2, color: Colors.black54)))),
                           ),
                           Container(
                             width: 70,
@@ -466,15 +465,16 @@ class _CuentaState extends State<MainView> {
                                 style: TextStyle(
                                   fontSize: 30,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                 ),
                               ),
-                              style: ElevatedButton.styleFrom(
-                                  foregroundColor: Colors.black,
-                                  backgroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  )),
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStatePropertyAll<Color>(
+                                          Colors.transparent),
+                                  side: MaterialStatePropertyAll<BorderSide>(
+                                      BorderSide(
+                                          width: 2, color: Colors.black54))),
                             ),
                           ),
                           Container(
@@ -490,15 +490,16 @@ class _CuentaState extends State<MainView> {
                                 style: TextStyle(
                                   fontSize: 30,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                 ),
                               ),
-                              style: ElevatedButton.styleFrom(
-                                  foregroundColor: Colors.black,
-                                  backgroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  )),
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStatePropertyAll<Color>(
+                                          Colors.transparent),
+                                  side: MaterialStatePropertyAll<BorderSide>(
+                                      BorderSide(
+                                          width: 2, color: Colors.black54))),
                             ),
                           ),
                           Container(
@@ -510,7 +511,8 @@ class _CuentaState extends State<MainView> {
                                 Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => const MainView()),
+                                        builder: (context) =>
+                                            const AccountView()),
                                     (route) => false);
                               },
                               child: Row(
@@ -541,17 +543,18 @@ class _CuentaState extends State<MainView> {
                                     style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.black,
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ],
                               ),
-                              style: ElevatedButton.styleFrom(
-                                  foregroundColor: Colors.black,
-                                  backgroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  )),
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStatePropertyAll<Color>(
+                                          Colors.transparent),
+                                  side: MaterialStatePropertyAll<BorderSide>(
+                                      BorderSide(
+                                          width: 2, color: Colors.black54))),
                             ),
                           )
                         ],
@@ -594,15 +597,16 @@ class _CuentaState extends State<MainView> {
                                 style: TextStyle(
                                   fontSize: 30,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                 ),
                               ),
-                              style: ElevatedButton.styleFrom(
-                                  foregroundColor: Colors.black,
-                                  backgroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  )),
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStatePropertyAll<Color>(
+                                          Colors.transparent),
+                                  side: MaterialStatePropertyAll<BorderSide>(
+                                      BorderSide(
+                                          width: 2, color: Colors.black54))),
                             ),
                           ),
                           Container(
@@ -642,7 +646,7 @@ class _CuentaState extends State<MainView> {
                                       MaterialPageRoute(
                                           builder: (context) => AmountView(
                                                 tipo: "nequi",
-                                                codigo: cod,
+                                                cuenta: numCuenta,
                                               )));
                                 } else {
                                   showCupertinoDialog(
@@ -678,17 +682,18 @@ class _CuentaState extends State<MainView> {
                                     style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.black,
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ],
                               ),
-                              style: ElevatedButton.styleFrom(
-                                  foregroundColor: Colors.black,
-                                  backgroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  )),
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStatePropertyAll<Color>(
+                                          Colors.transparent),
+                                  side: MaterialStatePropertyAll<BorderSide>(
+                                      BorderSide(
+                                          width: 2, color: Colors.black54))),
                             ),
                           ),
                         ],
