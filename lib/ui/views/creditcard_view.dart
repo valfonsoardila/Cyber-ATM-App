@@ -57,7 +57,7 @@ class _CreditCardViewState extends State<CreditCardView> {
               Container(
                 height: 30,
                 child: Text(
-                  "Seleccione una opción",
+                  "Seleccione usu banco de preferencia",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
