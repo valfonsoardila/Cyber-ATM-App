@@ -1,4 +1,4 @@
-import 'package:cyber_atm_app/ui/views/account_view.dart';
+import 'package:cyber_atm_app/ui/home/function_view.dart';
 import 'package:cyber_atm_app/ui/models/assets_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
@@ -47,7 +47,7 @@ class _MoneyWithDrawalViewState extends State<MoneyWithDrawalView> {
                     ),
                     SizedBox(height: 20),
                     Text(
-                      "Por favor retire su dinero",
+                      "¡Por favor retire su dinero!",
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 24,
@@ -62,11 +62,12 @@ class _MoneyWithDrawalViewState extends State<MoneyWithDrawalView> {
                 height: MediaQuery.of(context).size.height * 0.6,
                 child: Swiper(
                   itemWidth: 400,
-                  itemHeight: 225,
+                  itemHeight: 268,
                   loop: true,
                   duration: 1200,
                   scrollDirection: Axis.vertical,
                   itemCount: AssetsBillsModel.generateBills().length,
+                  layout: SwiperLayout.STACK,
                   itemBuilder: (context, index) {
                     return Container(
                       child: Column(
@@ -77,7 +78,7 @@ class _MoneyWithDrawalViewState extends State<MoneyWithDrawalView> {
                             width: 400,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Colors.white.withOpacity(0.8),
+                              color: Colors.white.withOpacity(0.9),
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.black.withOpacity(0.2),
@@ -111,12 +112,13 @@ class _MoneyWithDrawalViewState extends State<MoneyWithDrawalView> {
                 padding: EdgeInsets.all(20),
                 child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
+                      Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => AccountView()));
+                              builder: (context) => FunctionView()),
+                          (route) => false);
                     },
-                    child: Text("Retirar dinero"),
+                    child: Text("Finalizar transacción"),
                     style: ButtonStyle(
                       minimumSize: MaterialStateProperty.all(Size(160, 45)),
                       backgroundColor: MaterialStateProperty.all(Colors.black),

@@ -7,13 +7,15 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:background_sms/background_sms.dart';
 
 class AccountView extends StatefulWidget {
-  const AccountView({super.key});
+  final tipoDeTransaccion;
+  const AccountView({super.key, this.tipoDeTransaccion});
 
   @override
   State<AccountView> createState() => _CuentaState();
 }
 
 class _CuentaState extends State<AccountView> {
+  String tipoDeTransaccion = "";
   String numCuenta = "";
   Permission p = Permission.sms;
   push(int num) {
@@ -45,6 +47,12 @@ class _CuentaState extends State<AccountView> {
       }
     }
     return codexx;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    tipoDeTransaccion = widget.tipoDeTransaccion;
   }
 
   @override
@@ -80,16 +88,24 @@ class _CuentaState extends State<AccountView> {
                         ),
                         SizedBox(height: 20),
                         Container(
-                          margin: EdgeInsets.only(bottom: 20),
-                          child: Text(
-                            "Ingrese su numero de cuenta",
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
+                            margin: EdgeInsets.only(bottom: 20),
+                            child: tipoDeTransaccion == "Con tarjeta"
+                                ? Text(
+                                    "Ingrese su numero de cuenta",
+                                    style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  )
+                                : Text(
+                                    "Ingrese su numero de telefono",
+                                    style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  )),
                         Container(
                           width: MediaQuery.of(context).size.width * 0.8,
                           height: 190,
@@ -637,21 +653,29 @@ class _CuentaState extends State<AccountView> {
                             margin: EdgeInsets.only(top: 10),
                             child: ElevatedButton(
                               onPressed: () {
-                                String cod = codigo();
-                                enviarcodigo(numCuenta,
-                                    "Su codigo de retiro temporal es: $cod");
-                                if (numCuenta.length == 10) {
+                                print(tipoDeTransaccion);
+                                if (tipoDeTransaccion != "Con tarjeta") {
+                                  if (numCuenta.length == 10) {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => AmountView(
+                                                  tipo: tipoDeTransaccion,
+                                                  cuenta: numCuenta,
+                                                )));
+                                  } else {
+                                    showCupertinoDialog(
+                                        context: context,
+                                        builder: (_) => _buildAlertDialog());
+                                  }
+                                } else {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => AmountView(
-                                                tipo: "nequi",
+                                                tipo: tipoDeTransaccion,
                                                 cuenta: numCuenta,
                                               )));
-                                } else {
-                                  showCupertinoDialog(
-                                      context: context,
-                                      builder: (_) => _buildAlertDialog());
                                 }
                               },
                               child: Row(
@@ -722,15 +746,5 @@ class _CuentaState extends State<AccountView> {
             }),
       ],
     );
-  }
-
-  Future<void> enviarcodigo(telefono, codigo) async {
-    SmsStatus result =
-        await BackgroundSms.sendMessage(phoneNumber: telefono, message: codigo);
-    if (result == SmsStatus.sent) {
-      print("Sent");
-    } else {
-      print("Failed");
-    }
   }
 }

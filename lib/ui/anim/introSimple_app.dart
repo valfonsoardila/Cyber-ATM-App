@@ -50,7 +50,7 @@ class _IntroSimpleState extends State<IntroSimple> {
                   TyperAnimatedText(
                     '¡Tu cajero automatico virtual!', // Puedes personalizar el nombre de tu aplicación aquí
                     textStyle: TextStyle(
-                      fontSize: 16,
+                      fontSize: 18,
                       fontWeight: FontWeight.normal,
                     ),
                   ),

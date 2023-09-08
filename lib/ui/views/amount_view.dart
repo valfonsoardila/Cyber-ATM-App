@@ -1,7 +1,8 @@
 import 'dart:math';
-
 import 'package:background_sms/background_sms.dart';
 import 'package:cyber_atm_app/ui/auth/login.dart';
+import 'package:cyber_atm_app/ui/models/bills_model.dart';
+import 'package:cyber_atm_app/ui/views/moneywithdrawal_view.dart';
 import 'package:cyber_atm_app/ui/views/withdrawalcode_view.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -173,17 +174,33 @@ class _AmountViewState extends State<AmountView> {
                                           children: [
                                             GestureDetector(
                                               onTap: () {
-                                                codigo = generarCodigo();
-                                                enviarcodigo(
-                                                    widget.cuenta, codigo);
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            WithdrawalCodeView(
-                                                              monto: 20000,
-                                                              codigo: codigo,
-                                                            )));
+                                                if (widget.tipo !=
+                                                    "Con tarjeta") {
+                                                  codigo = generarCodigo();
+                                                  enviarcodigo(
+                                                      widget.cuenta, codigo);
+
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              WithdrawalCodeView(
+                                                                monto: 20000,
+                                                                codigo: codigo,
+                                                              )));
+                                                } else {
+                                                  var monto = BillsModel()
+                                                      .retirar(20000);
+                                                  print(monto);
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              MoneyWithDrawalView(
+                                                                cantidadBilletes:
+                                                                    monto,
+                                                              )));
+                                                }
                                               },
                                               child: SizedBox(
                                                 child: Row(
@@ -216,17 +233,33 @@ class _AmountViewState extends State<AmountView> {
                                             ),
                                             GestureDetector(
                                               onTap: () {
-                                                codigo = generarCodigo();
-                                                enviarcodigo(
-                                                    widget.cuenta, codigo);
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            WithdrawalCodeView(
-                                                                monto: 50000,
-                                                                codigo:
-                                                                    codigo)));
+                                                if (widget.tipo !=
+                                                    "Con tarjeta") {
+                                                  codigo = generarCodigo();
+                                                  enviarcodigo(
+                                                      widget.cuenta, codigo);
+
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              WithdrawalCodeView(
+                                                                  monto: 50000,
+                                                                  codigo:
+                                                                      codigo)));
+                                                } else {
+                                                  var monto = BillsModel()
+                                                      .retirar(50000);
+                                                  print(monto);
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              MoneyWithDrawalView(
+                                                                cantidadBilletes:
+                                                                    monto,
+                                                              )));
+                                                }
                                               },
                                               child: SizedBox(
                                                 child: Row(
@@ -266,17 +299,33 @@ class _AmountViewState extends State<AmountView> {
                                           children: [
                                             GestureDetector(
                                               onTap: () {
-                                                codigo = generarCodigo();
-                                                enviarcodigo(
-                                                    widget.cuenta, codigo);
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            WithdrawalCodeView(
-                                                                monto: 100000,
-                                                                codigo:
-                                                                    codigo)));
+                                                if (widget.tipo !=
+                                                    "Con tarjeta") {
+                                                  codigo = generarCodigo();
+                                                  enviarcodigo(
+                                                      widget.cuenta, codigo);
+
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              WithdrawalCodeView(
+                                                                  monto: 100000,
+                                                                  codigo:
+                                                                      codigo)));
+                                                } else {
+                                                  var monto = BillsModel()
+                                                      .retirar(100000);
+                                                  print(monto);
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              MoneyWithDrawalView(
+                                                                cantidadBilletes:
+                                                                    monto,
+                                                              )));
+                                                }
                                               },
                                               child: SizedBox(
                                                 child: Row(
@@ -309,17 +358,33 @@ class _AmountViewState extends State<AmountView> {
                                             ),
                                             GestureDetector(
                                               onTap: () {
-                                                codigo = generarCodigo();
-                                                enviarcodigo(
-                                                    widget.cuenta, codigo);
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            WithdrawalCodeView(
-                                                                monto: 200000,
-                                                                codigo:
-                                                                    codigo)));
+                                                if (widget.tipo !=
+                                                    "Con tarjeta") {
+                                                  codigo = generarCodigo();
+                                                  enviarcodigo(
+                                                      widget.cuenta, codigo);
+
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              WithdrawalCodeView(
+                                                                  monto: 200000,
+                                                                  codigo:
+                                                                      codigo)));
+                                                } else {
+                                                  var monto = BillsModel()
+                                                      .retirar(200000);
+                                                  print(monto);
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              MoneyWithDrawalView(
+                                                                cantidadBilletes:
+                                                                    monto,
+                                                              )));
+                                                }
                                               },
                                               child: SizedBox(
                                                 child: Row(
@@ -359,17 +424,33 @@ class _AmountViewState extends State<AmountView> {
                                           children: [
                                             GestureDetector(
                                               onTap: () {
-                                                codigo = generarCodigo();
-                                                enviarcodigo(
-                                                    widget.cuenta, codigo);
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            WithdrawalCodeView(
-                                                              monto: 300000,
-                                                              codigo: codigo,
-                                                            )));
+                                                if (widget.tipo !=
+                                                    "Con tarjeta") {
+                                                  codigo = generarCodigo();
+                                                  enviarcodigo(
+                                                      widget.cuenta, codigo);
+
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              WithdrawalCodeView(
+                                                                monto: 300000,
+                                                                codigo: codigo,
+                                                              )));
+                                                } else {
+                                                  var monto = BillsModel()
+                                                      .retirar(300000);
+                                                  print(monto);
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              MoneyWithDrawalView(
+                                                                cantidadBilletes:
+                                                                    monto,
+                                                              )));
+                                                }
                                               },
                                               child: SizedBox(
                                                 child: Row(
@@ -402,17 +483,33 @@ class _AmountViewState extends State<AmountView> {
                                             ),
                                             GestureDetector(
                                               onTap: () {
-                                                codigo = generarCodigo();
-                                                enviarcodigo(
-                                                    widget.cuenta, codigo);
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            WithdrawalCodeView(
-                                                                monto: 500000,
-                                                                codigo:
-                                                                    codigo)));
+                                                if (widget.tipo !=
+                                                    "Con tarjeta") {
+                                                  codigo = generarCodigo();
+                                                  enviarcodigo(
+                                                      widget.cuenta, codigo);
+
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              WithdrawalCodeView(
+                                                                  monto: 500000,
+                                                                  codigo:
+                                                                      codigo)));
+                                                } else {
+                                                  var monto = BillsModel()
+                                                      .retirar(500000);
+                                                  print(monto);
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              MoneyWithDrawalView(
+                                                                cantidadBilletes:
+                                                                    monto,
+                                                              )));
+                                                }
                                               },
                                               child: SizedBox(
                                                 child: Row(
@@ -452,17 +549,32 @@ class _AmountViewState extends State<AmountView> {
                                           children: [
                                             GestureDetector(
                                               onTap: () {
-                                                codigo = generarCodigo();
-                                                enviarcodigo(
-                                                    widget.cuenta, codigo);
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            WithdrawalCodeView(
-                                                              monto: 1000000,
-                                                              codigo: codigo,
-                                                            )));
+                                                if (widget.tipo !=
+                                                    "Con tarjeta") {
+                                                  codigo = generarCodigo();
+                                                  enviarcodigo(
+                                                      widget.cuenta, codigo);
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              WithdrawalCodeView(
+                                                                monto: 1000000,
+                                                                codigo: codigo,
+                                                              )));
+                                                } else {
+                                                  var monto = BillsModel()
+                                                      .retirar(1000000);
+                                                  print(monto);
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              MoneyWithDrawalView(
+                                                                cantidadBilletes:
+                                                                    monto,
+                                                              )));
+                                                }
                                               },
                                               child: SizedBox(
                                                 child: Row(
@@ -587,6 +699,8 @@ class _AmountViewState extends State<AmountView> {
 }
 
 class Keyboard extends StatelessWidget {
+  late BillsModel billsModel;
+  late List<int> cantidadBilletes;
   final cantidadARetirar;
   final tipo;
   final cuenta;
@@ -803,7 +917,7 @@ class Keyboard extends StatelessWidget {
                         margin: EdgeInsets.only(top: 10),
                         child: ElevatedButton(
                           onPressed: () {
-                            num = 1;
+                            num = 4;
                             onNumberPressed(num);
                           },
                           child: Text(
@@ -1130,16 +1244,32 @@ class Keyboard extends StatelessWidget {
                         child: ElevatedButton(
                             onPressed: () {
                               isContinue = true;
-                              var code = generarCodigo();
-                              onContinuePressed(code);
-                              int cantidadDinero = int.parse(cantidadARetirar);
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => WithdrawalCodeView(
-                                            monto: cantidadDinero,
-                                            codigo: code,
-                                          )));
+                              if (tipo != "Con tarjeta") {
+                                var code = generarCodigo();
+                                onContinuePressed(code);
+                                int cantidadDinero =
+                                    int.parse(cantidadARetirar);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            WithdrawalCodeView(
+                                              monto: cantidadDinero,
+                                              codigo: code,
+                                            )));
+                              } else {
+                                cantidadBilletes =
+                                    BillsModel().retirar(cantidadARetirar);
+                                print(cantidadBilletes);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            MoneyWithDrawalView(
+                                              cantidadBilletes:
+                                                  cantidadBilletes,
+                                            )));
+                              }
                             },
                             child: Row(
                               children: [

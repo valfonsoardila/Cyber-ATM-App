@@ -1,16 +1,16 @@
 import 'package:cyber_atm_app/ui/views/account_view.dart';
-import 'package:cyber_atm_app/ui/views/creditcard_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class FunctionView extends StatefulWidget {
-  const FunctionView({super.key});
+class CreditCardView extends StatefulWidget {
+  final tipoDeTransaccion;
+  const CreditCardView({super.key, this.tipoDeTransaccion});
 
   @override
-  State<FunctionView> createState() => _FunctionViewState();
+  State<CreditCardView> createState() => _CreditCardViewState();
 }
 
-class _FunctionViewState extends State<FunctionView> {
+class _CreditCardViewState extends State<CreditCardView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,8 +73,9 @@ class _FunctionViewState extends State<FunctionView> {
                             Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const AccountView(
-                                          tipoDeTransaccion: "Sin tarjeta",
+                                    builder: (context) => AccountView(
+                                          tipoDeTransaccion:
+                                              widget.tipoDeTransaccion,
                                         )),
                                 (route) => false);
                           },
@@ -92,7 +93,7 @@ class _FunctionViewState extends State<FunctionView> {
                                   size: 28,
                                 ),
                                 Text(
-                                  "Retiro sin tarjeta",
+                                  "Bancolombia",
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -105,18 +106,21 @@ class _FunctionViewState extends State<FunctionView> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            showCupertinoDialog(
-                                context: context,
-                                builder: (_) => _buildAlertDialog(
-                                    "Servicio Temporalmente",
-                                    "\nDeshabilitado"));
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AccountView(
+                                          tipoDeTransaccion:
+                                              widget.tipoDeTransaccion,
+                                        )),
+                                (route) => false);
                           },
                           child: SizedBox(
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
-                                  "Pagos y Recargas",
+                                  "Banco popular",
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -144,11 +148,14 @@ class _FunctionViewState extends State<FunctionView> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            showCupertinoDialog(
-                                context: context,
-                                builder: (_) => _buildAlertDialog(
-                                    "Servicio Temporalmente",
-                                    "\nDeshabilitado"));
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AccountView(
+                                          tipoDeTransaccion:
+                                              widget.tipoDeTransaccion,
+                                        )),
+                                (route) => false);
                           },
                           child: SizedBox(
                             child: Row(
@@ -164,7 +171,7 @@ class _FunctionViewState extends State<FunctionView> {
                                   size: 28,
                                 ),
                                 Text(
-                                  "Consignaciones",
+                                  "Banco bogotá",
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -180,8 +187,9 @@ class _FunctionViewState extends State<FunctionView> {
                             Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const CreditCardView(
-                                          tipoDeTransaccion: "Con tarjeta",
+                                    builder: (context) => AccountView(
+                                          tipoDeTransaccion:
+                                              widget.tipoDeTransaccion,
                                         )),
                                 (route) => false);
                           },
@@ -190,7 +198,7 @@ class _FunctionViewState extends State<FunctionView> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
-                                  "Retiro con tarjeta",
+                                  "Banco Av Villas",
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -235,7 +243,8 @@ class _FunctionViewState extends State<FunctionView> {
             onPressed: () {
               Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => const FunctionView()),
+                  MaterialPageRoute(
+                      builder: (context) => const CreditCardView()),
                   (route) => false);
             }),
       ],
